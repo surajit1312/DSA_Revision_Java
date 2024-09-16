@@ -1,6 +1,34 @@
 class Solution {
     /**
-     * Optimal Approach
+     * Optimal Approach II
+     * 
+     * TC: O(2N + 26) ~ O(N)
+     * SC: O(26) ~ O(1)
+     * 
+     * @param s
+     * @param t
+     * @return
+     */
+    public boolean isAnagram(String s, String t) {
+        int[] chars = new int[26]; // SC: O(26) ~ O(1)
+        for (int i = 0; i < s.length(); i++) { // TC: O(N)
+            chars[s.charAt(i) - 'a']++;
+        }
+        for (int i = 0; i < t.length(); i++) { // TC: O(N)
+            chars[t.charAt(i) - 'a']--;
+        }
+        boolean isAnagram = true;
+        for (int i = 0; i < chars.length; i++) { // TC: O(26)
+            if (chars[i] != 0) {
+                isAnagram = false;
+                break;
+            }
+        }
+        return isAnagram;
+    }
+
+    /**
+     * Optimal Approach I
      * 
      * TC: O(2N) ~ O(N)
      * SC: O(N)
@@ -9,7 +37,7 @@ class Solution {
      * @param t
      * @return
      */
-    public boolean isAnagram(String s, String t) {
+    public boolean isAnagramOptimal(String s, String t) {
         HashMap<Character, Integer> hm = new HashMap<Character, Integer>(); // SC: O(N)
         for (int i = 0; i < s.length(); i++) { // TC: O(N)
             char ch = s.charAt(i);
